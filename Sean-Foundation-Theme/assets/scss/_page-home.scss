@@ -1,0 +1,104 @@
+.carousel-section{
+	text-align: center;
+	top: 0;
+	bottom: 0;
+	img{position: relative; width: 100%; -webkit-filter: brightness(90%); /* Safari 6.0 - 9.0 */
+	    filter: brightness(90%);
+	}
+}
+
+.text-overlay{
+	text-align: center;
+	p{color: #000; font-size: 1em; line-height: 1.4rem; padding-top: 1rem;}
+	a{ color: #000;}
+	a:hover{color: #000;}
+
+	@media(min-width:768px){
+		text-align: left;
+		top:10rem;
+		background: rgba(0, 0, 0, 0.5);
+		padding: 1rem 1rem 0 1rem;
+		position: absolute; 
+		left: 5%;
+		margin-left: 0;
+		margin-right: -40%;
+		padding: 1rem 2rem;
+		p{font-size: 2.5em; line-height: 3rem; color: $primary-color; font-weight: bold;}
+	}
+}
+
+.program-description{
+	margin: 0 1rem;
+	text-align: center;
+	.sub-logo{width: 60%; max-width: 12rem; padding-top: 1rem;}
+	.program-article{
+		max-width: 75rem;
+		padding-top: 1rem;
+		text-align: left;
+		img{padding: 1rem 0 1rem 0;}
+		a{color: #000;}
+		@media(min-width: 768px){
+			padding-top: 2rem;
+			img{padding: 0; padding-right: 2rem; width: 40%; float: left;}
+			.program-content{width: 60%;}
+		}
+	}
+}
+
+.programs{
+	margin: 0 1rem;
+	h3{padding: 2rem 0; font-weight: bold;}
+	@media(min-width:768px){
+		h3{padding: 3rem 0;}
+	}
+}
+
+.single-program{
+	h4{padding-top: 1rem; font-weight: bold;}
+	a{color: #000; margin-bottom: 1rem;}
+	a:hover{color: #000;}
+	img{padding-bottom: 1rem;}
+	@media(min-width:768px){
+		a{margin: 0;}
+		h4{padding-top: 1rem;}
+		img{padding: 1rem 2rem 0 0;}
+		.imageColumn{width: 50%; float: left;}
+		.program-content{
+			width: 50%;
+			float: right;
+		}
+		
+	}
+}
+
+.program-content{
+	span{display: none;}
+}
+@media(min-width:768px){
+	.program-content{
+		span{display: none;}
+		width: 50%;
+		float: right;
+	}
+}
+
+
+.slider-down {
+	overflow-y: hidden;
+	height: auto;
+	transition-property: all;
+	transition-duration: 2s;
+	transition-timing-function: ease(0, 1, 0.5, 1);
+}
+
+.slider-up{
+	overflow-y: hidden;
+	overflow: hidden;
+	transition-property: all;
+	transition-duration: 1s;
+	transition-timing-function: ease(0, 1, 0.5, 1);
+}
+
+.slider-closed {
+	overflow: hidden;
+}

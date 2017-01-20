@@ -1,0 +1,31 @@
+.contact-body{
+	text-align: center;
+	padding-top: 1rem;
+	max-width: 55rem;
+	margin: 0 auto;
+	h3{padding-top: 1rem;}
+	.wpcf7-submit{padding: 0.5rem 1rem 0.5rem 1rem; background: $primary-color;}
+	p{width: 90%; margin-left: 5%; margin-right: 5%;}
+	@media(min-width:768px){
+		text-align: left;
+		h2{padding-left: 2rem;}
+		label:nth-child(1){padding-left: 2rem;}
+		p{margin: 0; width: 100%;}
+		p:nth-child(2){width: 50%; float: left;}
+		p:nth-child(3){width: 50%; float: left;}
+		.wpcf7-submit{margin-left: 2rem;}
+	}
+}
+
+.map-section{
+	h2{padding-left: 1rem; text-align: left; padding-top: 1rem;}
+	padding-top: 2rem;
+	text-align: center;	
+}
+.no-width{
+	width: inherit;
+}
+
+.rightTwoRem{
+	padding-left: 2rem;
+}
