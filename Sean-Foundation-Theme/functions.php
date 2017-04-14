@@ -94,3 +94,22 @@ function cmd_remove_dashboard_widgets() {
 }
 add_action( 'wp_dashboard_setup', 'cmd_remove_dashboard_widgets' );
 */
+
+//custom excerpt
+add_action('init', 'custom_excerpt');
+function custom_excerpt(){
+    global $post;
+
+    if ( ! empty($post) && is_a($post, 'WP_Post') ) :
+
+        $content = $post->post_content;
+        $pieces = explode(" ", $content);
+        $excerpt = implode(" ", array_splice($pieces, 0, 50)); //Get first N words
+        $excerpt .= " ...";
+
+        $excerpt .= '<br> <a href="' . get_permalink($post)  . '">Read More</a>';
+
+        return $excerpt;
+
+    endif;
+}
