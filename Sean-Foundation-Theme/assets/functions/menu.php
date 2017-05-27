@@ -37,9 +37,16 @@ function joints_off_canvas_nav() {
         'theme_location' => 'main-nav',        			// Where it's located in the theme
         'depth' => 5,                                   // Limit the depth of the nav
         'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new Off_Canvas_Menu_Walker()
+        'walker' => new contentWalker()
     ));
 } 
+
+class contentWalker extends Walker_Nav_Menu{
+    function start_lvl(&$output, $depth = 0, $args = Array() ) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "<h1>HELLO WORLD</h1>";
+    }
+}
 
 class Off_Canvas_Menu_Walker extends Walker_Nav_Menu {
     function start_lvl(&$output, $depth = 0, $args = Array() ) {

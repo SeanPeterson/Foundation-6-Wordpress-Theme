@@ -15,7 +15,7 @@
 		</section> <!-- end search section -->
 		
 		<footer class="article-footer">
-			<p><?php _e( 'This is the error message in the parts/content-missing.php template.', 'jointswp' ); ?></p>
+	
 		</footer>
 		
 	<?php else: ?>
@@ -33,7 +33,7 @@
 		</section> <!-- end search section -->
 		
 		<footer class="article-footer">
-		  <p><?php _e( 'This is the error message in the parts/content-missing.php template.', 'jointswp' ); ?></p>
+		
 		</footer>
 			
 	<?php endif; ?>

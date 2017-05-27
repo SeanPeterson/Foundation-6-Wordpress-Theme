@@ -27,7 +27,7 @@ CSS file.
 @include foundation-global-styles;
 @include foundation-grid;
 //@include foundation-flex-classes;
-//@include foundation-flex-grid;
+@include foundation-flex-grid;
 @include foundation-typography;
 @include foundation-forms;
 @include foundation-button;
@@ -67,9 +67,8 @@ CSS file.
 @import "main";
 @import "header";
 @import "page-home";
-@import "about";
-@import "team";
-@import "programs";
+@import "singlePost";
+@import "sidebar";
 @import "contact";
 
 // Import your retina/HD styles
@@ -79,4 +78,8 @@ CSS file.
 @import "print";
 
 //icons
-@import "../foundation-icons/foundation-icons.css";
+//@import "../foundation-icons/foundation-icons.css";
+@import "../fonts/font-awesome/css/font-awesome.min.css";
+
+//custom fonts
+//@import url('https://fonts.googleapis.com/css?family=Anton|EB+Garamond');

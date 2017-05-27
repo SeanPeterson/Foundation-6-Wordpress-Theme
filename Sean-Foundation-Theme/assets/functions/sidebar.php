@@ -21,6 +21,16 @@ function joints_register_sidebars() {
 		'after_title' => '</h4>',
 	));
 
+	register_sidebar(array(
+		'id' => 'sidebar2',
+		'name' => __('Sidebar 2', 'jointswp'),
+		'description' => __('The second (secondary) sidebar.', 'jointswp'),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h4 class="widgettitle">',
+		'after_title' => '</h4>',
+	));
+
 	/*
 	to add more sidebars or widgetized areas, just copy
 	and edit the above sidebar code. In order to call
@@ -28,6 +38,8 @@ function joints_register_sidebars() {
 
 	Just change the name to whatever your new
 	sidebar's id is, for example:
+
+	
 
 	register_sidebar(array(
 		'id' => 'sidebar2',

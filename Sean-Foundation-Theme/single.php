@@ -18,7 +18,7 @@
 
 		</main> <!-- end #main -->
 
-		<?php get_sidebar(); ?>
+		<?php get_template_part( 'sidebar-short' ); ?>
 
 	</div> <!-- end #inner-content -->
 

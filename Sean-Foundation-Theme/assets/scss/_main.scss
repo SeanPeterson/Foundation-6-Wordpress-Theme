@@ -7,10 +7,107 @@ Stylesheet: Main Stylesheet
 /*********************
 GENERAL STYLES
 *********************/
+@import url('https://fonts.googleapis.com/css?family=Oswald:600');
+@font-face {
+    font-family: norwester;
+    src: url("../fonts/norwester.otf") format("opentype");
+}
+.gallery{
+	dl{
+		float: left;
+		padding-right: 1.4rem;
+	}
+}
+
+/*Safari fucks up with the flex box ARGHHH!!!*/
+.large-8{
+	flex: 1 !important;
+}
+
+.error404{
+	.off-canvas-wrapper{min-height: 90vh;}
+}
+
+.pushbutton-wide{
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0;
+		padding: 0.85em 1em;
+		-webkit-appearance: none;
+		border: 1px solid transparent;
+		border-radius: 0.3rem;
+		transition: background-color 0.25s ease-out, color 0.25s ease-out;
+		font-size: 0.9rem;
+		line-height: 1;
+		text-align: center;
+		cursor: pointer;
+		background-color: #45D9E7;
+		color: #fefefe;
+
+	}
+	.pushbutton-wide:hover{
+		background-color: #1dd1e2;
+		color: #fefefe;
+	}
+
+#wpfront-scroll-top-container{
+	img{width: 3rem !important;}
+}
+
+.spinner{left: 50% !important;}
+
+.left-footer-content{
+	float: left;
+}
+
+.right-footer-content{
+	float: right;
+}
+
+@media(max-width: 639.5px){ /*SMALL*/
+	.left-footer-content{
+		float: none;
+		text-align: center;
+	}
+
+	.right-footer-content{
+		float: none;
+		text-align: center;
+	}	
+}
+
+.flexgrid-10{
+	flex: 0 0 83.33333%;
+max-width: 83.33333%;
+}
+
+.flex-wrap{
+	flex-flow: row wrap;
+	display: flex;
+  	flex-wrap: wrap;
+}
+
+.flex-columns{
+flex: 1 1 0px;
+}
+
+.flex-col-6{
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	max-width: 50%;
+}
+
+.read-more-link{
+	float: right;
+	height: auto !important;
+	span{padding-left: 5px;}
+}
+.read-more-link:hover{
+	text-decoration: underline;
+}
 
 body{
 	font-size: 0.8em;
-
 	@media(min-width: 768px){
 		font-size: 1em;
 	}
@@ -22,7 +119,7 @@ body{
 
 .footer{
 	padding: 1rem 0 2rem 0;
-	background: #E5E5E5;
+	background: #fff;
 	p{margin-bottom: 0;}
 	text-align: center;
 	.copy-footer{p{padding-top: 1rem;} a{font-size: 1.3rem;}}
@@ -83,15 +180,7 @@ h5, .h5 {
 
 }
 
-/*********************
-HEADER STYLES
-*********************/
-.header {
-	ul.off-canvas-list li {
-		list-style: none;
-	}
-}
-    
+
 /*********************
 NAVIGATION STYLES
 *********************/
@@ -120,8 +209,14 @@ POSTS & CONTENT STYLES
 *********************/
 #content {
 	#inner-content {
+		box-shadow: 0 20px 15px rgba(0,0,0,0.3);
+		background: $body-background;
 		padding: 1rem 0rem;
 	}
+}
+
+.off-canvas-content, .off-canvas-content{
+	background: $body-background-outer;
 }
 
 .single-title,
@@ -498,7 +593,9 @@ COMMENT FORM STYLES
 /*********************
 SIDEBARS & ASIDES
 *********************/
-.sidebar {
+
+@media(max-width: $tablet-max-width){
+	.sidebar{display: none;}
 }
 
 #searchsubmit {
@@ -530,8 +627,10 @@ SIDEBARS & ASIDES
 FOOTER STYLES
 *********************/
 .footer {
+	box-shadow: 0 20px 15px rgba(0,0,0,0.3);
+	max-width: $global-width;
+	margin: 0 auto;
 	clear: both;
-	margin-top: 1em;
 }
 	
 /*********************

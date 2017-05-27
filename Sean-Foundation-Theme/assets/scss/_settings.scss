@@ -46,10 +46,10 @@
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1200);
+$global-width: 70rem;
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #fcdc04,
+  primary: #45D9E7,
   secondary: #5568C2,
   success: #3adb76,
   warning: #ffae00,
@@ -60,9 +60,16 @@ $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0a0a0a;
 $white: #fefefe;
+$facebook-blue: #3b5998;
+$twitter-blue:  #55acee;
+$google-red: #dd4b39;
+$youtube-red: #bb0000;
+$linkedin-blue: #007bb5;
+$instagram-blue: #125688;
 $body-background: $white;
+$body-background-outer: #F1F1F1;
 $body-font-color: $black;
-$body-font-family: 'Playfair Display', 'Helvetica Neue', Helvetica, Roboto, Arial;
+$body-font-family: Arial, EB Garamond, 'Playfair Display', 'Helvetica Neue', Helvetica, Roboto;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -89,7 +96,7 @@ $breakpoint-classes: (small medium large);
 
 // 3. The Grid
 // -----------
-
+$tablet-max-width: 1023.5px;
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
@@ -102,7 +109,8 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: $body-font-family;
+$header-font-family: norwester, $body-font-family;
+$subHeader-font-family: Oswald, $body-font-family;
 $header-font-weight: $global-weight-normal;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
@@ -139,7 +147,7 @@ $code-font-weight: $global-weight-normal;
 $code-background: $light-gray;
 $code-border: 1px solid $medium-gray;
 $code-padding: rem-calc(2 5 1);
-$anchor-color: $secondary-color;
+$anchor-color: $black;
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
@@ -177,7 +185,7 @@ $subheader-color: $dark-gray;
 $subheader-font-weight: $global-weight-normal;
 $subheader-margin-top: 0.2rem;
 $subheader-margin-bottom: 0.5rem;
-$stat-font-size: 2.5rem;
+$stat-font-size: 2rem;
 
 // 6. Abide
 // --------
@@ -195,12 +203,14 @@ $input-error-font-weight: $global-weight-bold;
 
 $accordion-background: $white;
 $accordion-plusminus: true;
-$accordion-item-color: foreground($accordion-background, $primary-color);
+//$accordion-item-color: foreground($accordion-background, $primary-color);
+$accordion-item-color: $secondary-color;
 $accordion-item-background-hover: $light-gray;
 $accordion-item-padding: 1.25rem 1rem;
 $accordion-content-background: $white;
 $accordion-content-border: 1px solid $light-gray;
-$accordion-content-color: foreground($accordion-background, $primary-color);
+//$accordion-content-color: foreground($accordion-background, $primary-color);
+$accordion-content-color: $secondary-color;
 $accordion-content-padding: 1rem;
 
 // 8. Accordion Menu
@@ -213,7 +223,9 @@ $accordionmenu-arrow-color: $primary-color;
 // --------
 
 $badge-background: $primary-color;
-$badge-color: foreground($badge-background);
+$badge-color: $white;
+$badge-color-alt: $black;
+$badge-palette: $foundation-palette;
 $badge-padding: 0.3em;
 $badge-minwidth: 2.1em;
 $badge-font-size: 0.6rem;
@@ -361,7 +373,8 @@ $input-radius: $global-radius;
 // ---------
 
 $label-background: $primary-color;
-$label-color: foreground($label-background);
+//$label-color: foreground($label-background);
+$label-color: $secondary-color;
 $label-font-size: 0.8rem;
 $label-padding: 0.33333rem 0.5rem;
 $label-radius: $global-radius;
@@ -397,7 +410,7 @@ $meter-fill-bad: $alert-color;
 // --------------
 
 $offcanvas-size: 250px;
-$offcanvas-background: $light-gray;
+$offcanvas-background: $black;
 $offcanvas-zindex: -1;
 $offcanvas-transition-length: 0.5s;
 $offcanvas-transition-timing: ease;
@@ -405,19 +418,20 @@ $offcanvas-fixed-reveal: true;
 $offcanvas-exit-background: rgba($white, 0.25);
 $maincontent-class: 'off-canvas-content';
 $maincontent-shadow: 0 0 10px rgba($black, 0.5);
+$maincontent-prevent-scroll: true;
 
 // 25. Orbit
 // ---------
 
-$orbit-bullet-background: $medium-gray;
-$orbit-bullet-background-active: $dark-gray;
-$orbit-bullet-diameter: 1.2rem;
+$orbit-bullet-background: $primary-color;
+$orbit-bullet-background-active: darken($primary-color, 20%);;
+$orbit-bullet-diameter: 0.9rem;
 $orbit-bullet-margin: 0.1rem;
-$orbit-bullet-margin-top: 0.8rem;
-$orbit-bullet-margin-bottom: 0.8rem;
-$orbit-caption-background: rgba($black, 0.5);
-$orbit-caption-padding: 1rem;
-$orbit-control-background-hover: rgba($black, 0.5);
+$orbit-bullet-margin-top: 0;
+$orbit-bullet-margin-bottom: 0.5rem;
+$orbit-caption-background: rgba($black, 0.9);
+$orbit-caption-padding: 0.5rem;
+$orbit-control-background-hover: darken($primary-color, 20%);;
 $orbit-control-padding: 1rem;
 $orbit-control-zindex: 10;
 
@@ -432,7 +446,8 @@ $pagination-item-spacing: rem-calc(1);
 $pagination-radius: $global-radius;
 $pagination-item-background-hover: $light-gray;
 $pagination-item-background-current: $primary-color;
-$pagination-item-color-current: foreground($pagination-item-background-current);
+//$pagination-item-color-current: foreground($pagination-item-background-current);
+$pagination-item-color-current: $secondary-color;
 $pagination-item-color-disabled: $medium-gray;
 $pagination-ellipsis-color: $black;
 $pagination-mobile-items: false;
@@ -518,7 +533,8 @@ $tab-item-padding: 1.25rem 1.5rem;
 $tab-expand-max: 6;
 $tab-content-background: $white;
 $tab-content-border: $light-gray;
-$tab-content-color: foreground($tab-background, $primary-color);
+//$tab-content-color: foreground($tab-background, $primary-color);
+$tab-content-color: $secondary-color;
 $tab-content-padding: 1rem;
 
 // 33. Thumbnail

@@ -26,6 +26,7 @@
 	    <?php } ?>
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+		
 
 		<?php wp_head(); ?>
 
@@ -40,16 +41,16 @@
 
 		<div class="off-canvas-wrapper">
 			
-			<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-				
+			<div class="off-canvas-wrapper-inner"  data-off-canvas-wrapper>
 				<?php get_template_part( 'parts/content', 'offcanvas' ); ?>
+		 		
 				
-				<div class="off-canvas-content" data-off-canvas-content>
+				<div class="off-canvas-content"  data-off-canvas-content>
 					
 					<header class="header" role="banner">
 							
 						 <!-- This navs will be applied to the topbar, above all content 
 							  To see additional nav styles, visit the /parts directory -->
-						 <?php get_template_part( 'parts/nav', 'title-bar' ); ?>
+						 <?php get_template_part( 'parts/nav', 'offcanvas-topbar' ); ?>
 		 	
 					</header> <!-- end .header -->

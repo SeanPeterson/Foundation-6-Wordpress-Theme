@@ -1,145 +1,195 @@
-
-/*
 jQuery(document).ready(function() {
 
-var numOfPrograms = jQuery('.single-program p').length;
-var paraHeight;
-var imageHeight;
-		console.log("THE PARA H us " + paraHeight);
-var paragraphSizes = [];
+//Detect if object-fit is supported by the browser (Looking at yout IE)
+/* DOES NOT WORK WELL WITH INFINITE SCROLL
+if (!Modernizr.objectfit ) {
+  console.log("NO COMPAT");
+  jQuery('.wp-post-image').each(function(){
+    var $imgUrl = this.getAttribute('src');
+    
+    //change img to background
+    jQuery(this).parent().css('background-image', 'url(' + $imgUrl + ')');
+    jQuery(this).parent().addClass('compat-object-fit');
+    jQuery('.segue').addClass('compat-segue');
 
-jQuery(window).resize(function() {
-	if(jQuery(document).width() > 768){
-		imageHeight = (jQuery(".single-program .imageColumn img").height()) - 100;
-		hideText();
-		jQuery(".program-content a").toggle(function(){slideUp(this);}, function(){slideDown(this);});
-	}
-	else
-	{
-		//remove functionality for mobile devices
-		for(var i=1; i<=numOfPrograms; i++){
-			jQuery("#program_" + i + " a").remove();
-			jQuery("#program_" + i + " p").removeAttr("style");
-		}
-	}
-});
+    //hide the image
+    jQuery(this).addClass('hide');
+  });
+}
+else{
+  console.log("YES COMPAT");
+}
 
-
-	//hide text when too long
-	if(jQuery(document).width() > 768)
-		hideText();
-	
-	function hideText(){
-		var maxWords = 96;
-		imageHeight = (jQuery(".single-program .imageColumn img").height());
-		console.log("IMAGE" + imageHeight);
-
-		for(var i=1; i<=numOfPrograms; i++){
-
-			var divheight = jQuery("#program_" + i + " p").height(); 
-		    var lineheight = jQuery("#program_" + i + " p").css('line-height').replace("px","");
-		    var numOfLines = Math.round(divheight/parseInt(lineheight));
-		    var numOfWords = jQuery("#program_" + i + " p").html().split(" ").length;
-		    var numOfChars = jQuery("#program_" + i + " p").html().length;
-		    var linesOffset = (numOfLines - 17)/2;
-		    paraHeight = jQuery("#program_" + i + " p")[0].scrollHeight;
-
-		    paragraphSizes.push(paraHeight);
-		    console.log("THE PARA HEIGHT IS " + jQuery("#program_" + i + " p")[0].scrollHeight);
-		    maxWords = Math.round((numOfWords/numOfLines) * (8 - linesOffset));
-		    if(paraHeight > (imageHeight))
-		    {
-		    	if(!jQuery("#program_" + i + " a").hasClass("slider-down"))
-		    	{
-				    //image height - 100px
-				    jQuery("#program_" + i + " p").css("max-height", imageHeight-100);
-				    jQuery("#program_" + i + " p").addClass("slider-closed");
-				    jQuery("#program_" + i + " a").remove();
-				    jQuery("#program_" + i ).append("<a class='button radius'>Continue Reading</a>");
-				}
-			}
-			else
-			{
-				console.log("WHERE");
-				jQuery("#program_" + i + " a").remove();
-				jQuery("#program_" + i + " p").removeAttr("style");
-			}
-		}
-		//var html = jQuery("#program_" + 2 + " p").html().split(" ");
-		//html = html.slice(0,maxWords).join(" ") + "<span>" + html.slice(maxWords).join(" ");
-		//html = html.slice(0,6).join(" ") + "</span>" + html.slice(6).join(" ");
-		//jQuery("#program_" + 2 + " p").html(html);
-		
-	}
-	/*
-		jQuery(".program-content a").toggle(function(){
-			console.log("#" + this.parentNode.id + " p span");
-
-			jQuery("#" + this.parentNode.id + " p span").slideDown('slow');
-			//jQuery("#" + this.parentNode.id + " p span").css("display", "inline");
-		},
-		function(){
-			jQuery("#" + this.parentNode.id + " p span").slideUp('slow');
-		});	
-
-
-	jQuery(".program-content a").click(function(){
-		
-		var testMe = jQuery("#program_" + 2 + " p").height();
-		var testMe = jQuery("#program_" + 2 + " p").css("overflow", "hidden");
-		for(var i=0; i<=435; i++)
-		{
-			setTimeout(
-			  function() 
-			  {
-			  	console.log("MADE it here@");
-			    jQuery("#program_" + 2 + " p").css("height", i + "px");
-			  }, 1000);
-		}
-	});
 */
-/*
-	jQuery(".program-content a").toggle(function(){slideUp(this);}, function(){slideDown(this);});
 
+var jsonObj = '';
+var iframeURL = "https://www.youtube.com/embed/";
 
+  //on window resize - remove sidebar if appropriate
+  jQuery(window).on('resize', function(){
+    if (jQuery(window).width() > 1020) {
+      jQuery('#off-canvas').removeClass('is-open');
+      jQuery('.js-off-canvas-overlay').removeClass('is-visible');
 
-	function slideUp(thisObject){
-			var parent = jQuery(thisObject).parent().attr('id');
-			console.log(parent);
-			var id = parent.substr(parent.length - 1);
-			paraHeight = paragraphSizes[id-1];
+      //load items on window resize (must be a computer at this point)
+      jQuery.ajax({
+          method: 'GET',
+          url: 'https://www.googleapis.com/youtube/v3/search?',
+          data: { 
+          part : 'snippet',
+          channelId: 'UCUW3wXNmcf6nsIMvfDTEIaQ',
+          key: postArray.YOUTUBE_API_KEY,
+          order: 'date'
+          },
+          dataType: 'jsonp',
+          cache: false,
+           success: function(result){
+            var responseString = JSON.stringify(result, '', 2);
+            jsonObj = jQuery.parseJSON(responseString);
+           
+            addVideo();
+           }
+      })
 
-			console.log(paraHeight);
-			var target = "#" + parent + " p";
-			console.log(target);
-			jQuery("#" + parent + " p").css("max-height", paraHeight);
-			if(jQuery("#" + parent + " p").hasClass("slider-closed"))
-				jQuery("#" + parent + " p").removeClass("slider-closed");
-			else
-				jQuery("#" + parent + " p").removeClass("slider-up");
-			jQuery("#" + parent + " p").addClass("slider-down");
-	}
+      jQuery.ajax({
+      type: "GET",
+      dataType: "jsonp",
+      cache: false,
+      url: 'https://api.instagram.com/v1/users/' + postArray.INSTAGRAM_CLIENT_ID + '/media/recent/?access_token=' + postArray.INSTAGRAM_ACCESS_TOKEN,
+      success: function(result)  {
 
-	function slideDown(thisObject){
-		var parent = jQuery(thisObject).parent().attr('id');
-		var id = parent.substr(parent.length - 1);
-		paraHeight = paragraphSizes[id-1];
-		jQuery("#" + parent + " p").css("max-height", imageHeight-100);
-		jQuery("#" + parent + " p").removeClass("slider-down");
-		jQuery("#" + parent + " p").addClass("slider-up");
-	}
+        var responseString = JSON.stringify(result, '', 2);
+          var jsonObj = jQuery.parseJSON(responseString);
 
-});
-*/
-//lightslider
-jQuery(document).ready(function() {
-    jQuery('#imageGallery').lightSlider({
-            gallery: true,
-      item: 1,
-      loop:true,
-      slideMargin: 0,
-      thumbItem: 9
-    });  
+          //embedd instagram objects on page
+          for(var i =0; i<jsonObj.data.length; i++)
+        {
+          //only display 5 posts
+          if(i == 5)
+            break;
+
+          //place image into intagram container
+          jQuery('#insta-anchor' + i).attr('href', jsonObj.data[i].link);
+          
+          //debug
+          //console.log(jsonObj.data[i]);
+        }
+
+        //call instagram script to process images (just in case the script loaded before these images were placed on the page)
+        window.instgrm.Embeds.process()        
+      },
+      error: function (error) {
+        console.log("failed to load instagram posts");
+         // console.log(error);
+      }
+  });
+    }
   });
 
- 
+  /**************INSTAGRAM API***********************/
+/*
+  jQuery.ajax({
+     type : "post",
+     url : postArray.ajax_url,
+     data: {action: "getInstagramLinks"},
+     success: function(response) {
+     	console.log("SUCCESS");
+     	var responseString = JSON.stringify(response, '', 2);
+      		jsonObj = jQuery.parseJSON(responseString);
+        console.log(response);
+        jQuery('#instagram').append(response);
+     }
+  })   
+*/
+
+/**************YOUTUBE DATA API***********************/
+if (jQuery(window).width() > 1020) {
+    jQuery.ajax({
+          method: 'GET',
+          url: 'https://www.googleapis.com/youtube/v3/search?',
+          data: { 
+          part : 'snippet',
+          channelId: 'UCUW3wXNmcf6nsIMvfDTEIaQ',
+          key: postArray.YOUTUBE_API_KEY,
+          order: 'date'
+          },
+          dataType: 'jsonp',
+          cache: false,
+           success: function(result){
+            var responseString = JSON.stringify(result, '', 2);
+            jsonObj = jQuery.parseJSON(responseString);
+           
+            addVideo();
+           }
+  })
+}
+/*
+  var videoID = jsonObj.items[i].id.videoId;
+    thisURL = iframeURL;
+    //set iframe properties
+    jQuery('<iframe />', { 
+      src: thisURL += videoID,
+      height: "200",
+      width: "357",
+      frameborder: "0",
+      allowfullscreen: "true"
+    }).appendTo('#video-container');
+*/
+function addVideo(){
+
+  //display videos on the page
+  for(var i =0; i<jsonObj.items.length; i++)
+  {
+    //add video source to iframe
+    var videoID = jsonObj.items[i].id.videoId;
+    var thisURL = iframeURL + videoID;
+
+    jQuery('#myIframe' + i).attr('src', thisURL);
+    jQuery('#myIframe' + i).removeClass('hide');
+  }
+}
+
+ /**************INSTAGRAM API***********************/
+   if (jQuery(window).width() > 1020) {
+    var feedUrl = 'https://api.instagram.com/v1/users/' + postArray.INSTAGRAM_CLIENT_ID + '/media/recent/?access_token=' + postArray.INSTAGRAM_ACCESS_TOKEN;
+    //console.log(feedUrl);
+    jQuery.ajax({
+        type: "GET",
+        dataType: "jsonp",
+        cache: false,
+        url: feedUrl,
+        success: function(result)  {
+
+          var responseString = JSON.stringify(result, '', 2);
+            var jsonObj = jQuery.parseJSON(responseString);
+
+            //embedd instagram objects on page
+            for(var i =0; i<jsonObj.data.length; i++)
+          {
+            //only display 5 posts
+            if(i == 5)
+              break;
+
+            //place image into intagram container
+            jQuery('#insta-anchor' + i).attr('href', jsonObj.data[i].link);
+            
+            //debug
+            //console.log(jsonObj.data[i]);
+          }
+
+          //call instagram script to process images (just in case the script loaded before these images were placed on the page)
+          window.instgrm.Embeds.process()        
+        },
+        error: function (error) {
+          console.log("failed to load instagram posts");
+           // console.log(error);
+        }
+    });
+}
+
+
+
+
+
+});
+

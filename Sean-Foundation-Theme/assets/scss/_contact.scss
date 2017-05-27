@@ -1,31 +1,23 @@
-.contact-body{
-	text-align: center;
-	padding-top: 1rem;
-	max-width: 55rem;
-	margin: 0 auto;
-	h3{padding-top: 1rem;}
-	.wpcf7-submit{padding: 0.5rem 1rem 0.5rem 1rem; background: $primary-color;}
-	p{width: 90%; margin-left: 5%; margin-right: 5%;}
-	@media(min-width:768px){
-		text-align: left;
-		h2{padding-left: 2rem;}
-		label:nth-child(1){padding-left: 2rem;}
-		p{margin: 0; width: 100%;}
-		p:nth-child(2){width: 50%; float: left;}
-		p:nth-child(3){width: 50%; float: left;}
-		.wpcf7-submit{margin-left: 2rem;}
+.contact-page{
+	.pushbutton-wide{
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0;
+		padding: 0.85em 1em;
+		-webkit-appearance: none;
+		border: 1px solid transparent;
+		border-radius: 0.3rem;
+		transition: background-color 0.25s ease-out, color 0.25s ease-out;
+		font-size: 0.9rem;
+		line-height: 1;
+		text-align: center;
+		cursor: pointer;
+		background-color: #45D9E7;
+		color: #fefefe;
+
 	}
-}
-
-.map-section{
-	h2{padding-left: 1rem; text-align: left; padding-top: 1rem;}
-	padding-top: 2rem;
-	text-align: center;	
-}
-.no-width{
-	width: inherit;
-}
-
-.rightTwoRem{
-	padding-left: 2rem;
+	.pushbutton-wide:hover{
+		background-color: #1dd1e2;
+		color: #fefefe;
+	}
 }
